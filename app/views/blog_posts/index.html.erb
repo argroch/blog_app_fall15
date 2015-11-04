@@ -1,0 +1,28 @@
+<h1>Every Blog Post Ever!</h1>
+
+<div class="mbot-15">
+  <%= link_to new_blog_post_path do %>
+    <button class="btn btn-success">
+      <i class="fa fa-pencil-square-o"></i> Make a Post
+    </button>
+  <% end %>
+</div>
+
+<% @blog_posts.each do |blog_post| %>
+  <div class="well">
+    <h3><%= link_to blog_post.title, blog_post, class: "blog-title-link" %></h3>
+    <p>by <%= blog_post.user.username %></p>
+    <p class="small-font"><i class="fa fa-clock-o"></i> <em>posted at <%= blog_post.created_at.strftime("%I:%M%p on %m/%d/%Y") %></em></p>
+    <p>
+      <%= blog_post.blog_entry[0..500].html_safe %>...<%= link_to "READ MORE", blog_post %>
+    </p>
+  </div>
+<% end %>
+
+<div class="mbot-15">
+  <%= link_to new_blog_post_path do %>
+    <button class="btn btn-success">
+      <i class="fa fa-pencil-square-o"></i> Make a Post
+    </button>
+  <% end %>
+</div>

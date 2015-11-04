@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well">
+	<h2>
+	  <%= @blog_post.title %>
+	</h2>
+	<p>
+	  by <%= @blog_post.user.username %>
+	</p>
+
+	<p class="small-font">
+		<i class="fa fa-clock-o"></i> <em>posted at <%= @blog_post.created_at.strftime("%I:%M%p on %m/%d/%Y") %></em>
+	</p>
+	<p>
+	  <%= @blog_post.blog_entry.html_safe %>
+	</p>
+	<div class="pull-right">
+		<% if current_user.id == @blog_post.user_id %>
+			<%= link_to 'Edit', edit_blog_post_path(@blog_post), class: "btn btn-warning" %> <%= link_to 'Destroy', @blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+		<% end %>
+	</div>
+</div>
+
+
+
+<div class="well">
+	<p>
+		<%= render 'comments/form' %>
+	</p>
+
+	<h3>Previous Comments</h3>
+	<% @blog_post.comments.each do |comment| %>
+		<div class="well">
+			<p>
+				<em><%= comment.user.username %> said...</em>
+			</p>
+			<p>
+				<%= comment.comment_entry.html_safe %>
+			</p>
+			<p class="small-font">
+				<em>posted at <%= comment.created_at.strftime("%I:%M%p on %m/%d/%Y") %></em>
+			</p>
+		</div>
+	<% end %>
+</div>
+
+
+
